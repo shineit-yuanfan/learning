@@ -26,4 +26,3 @@ git reset HEAD *#取消已经暂存的文件
 git checkout -- file#取消对文件的修改（从暂存区去除file）
 git checkout branch|tag|commit -- file_name#从仓库取出file覆盖当前分支
 git checkout -- .#从暂存区去除文件覆盖工作区什么是git
-#learning
