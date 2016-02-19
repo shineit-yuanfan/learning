@@ -35,13 +35,21 @@ git的操作
 git reset HEAD *#取消已经暂存的文件
 
 git checkout -- file#取消对文件的修改（从暂存区去除file）
+
 git checkout branch|tag|commit -- file_name#从仓库取出file覆盖当前分支
+
 git checkout -- .#从暂存区去除文件覆盖工作区什么是git
+
 git diff 查询差异
+
 git stash 保存进度
+
 git status 查看版本库当前状态
+
 rm*.txt 工作区删除这些文件
+
 git ls-files（暂存区中文件仍然存在）
+
 git rm删除
 
 	设置id email
