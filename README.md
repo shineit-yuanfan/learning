@@ -27,10 +27,10 @@ git的操作
 
 *git log#  查看提交记录
 
->git commit#提交更新
->git commit -m 'message'
->git commit -a#跳过使用暂存区域，把所有已经跟踪过的文件暂存起来一并提交
->git commit --amend#修改最后一次提交
+>git commit#提交更新  
+>git commit -m 'message'  
+>git commit -a#跳过使用暂存区域，把所有已经跟踪过的文件暂存起来一并提交  
+>git commit --amend#修改最后一次提交  
 
 git reset HEAD *#取消已经暂存的文件
 
@@ -49,6 +49,11 @@ git config --global user.name "zhang"
 git config --global user.email yuanfan@openerp.cn
 
 [this link](https://github.com/shineit-yuanfan/learning)
+
+
+git branch -d mybranch1 删除分支 
+git checkout master 切换分支
+
 
 
 
