@@ -155,7 +155,7 @@ Git仓库，https://github.com/odoo/odoo.git。
 
 下载它需要的git客户端（可以通过在Linux发行版可​​用），并且可以使用下面的命令来执行：
 
-$ git的克隆https://github.com/odoo/odoo.git
+$ git clone https://github.com/odoo/odoo.git
 
 安装依赖性
 
