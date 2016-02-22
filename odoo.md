@@ -71,7 +71,7 @@ Odoo结束时将自动开始安装。
 
 组态
 
-设置配置文件 <reference/cmdline/config>可以发现：文件`{%PROGRAMFILES%}\\Odoo 9.0-{id}\\server\\openerp-server.conf`.
+设置配置文件  reference/cmdline/config 可以发现：文件`{%PROGRAMFILES%}\\Odoo 9.0-{id}\\server\\openerp-server.conf`.
 
 配置文件可以连接到一个远程编辑Postgresql,编辑文件位置或设定dbfilter。
 
@@ -81,9 +81,9 @@ Deb
 
 安装9.0 Odoo Debian-based分布,作为根用户执行以下命令:
 
-# wget -O - https://nightly.odoo.com/odoo.key | apt-key add -
-# echo "deb http://nightly.odoo.com/9.0/nightly/deb/ ./" >> /etc/apt/sources.list
-# apt-get update && apt-get install odoo
+ # wget -O - https://nightly.odoo.com/odoo.key | apt-key add -
+ # echo "deb http://nightly.odoo.com/9.0/nightly/deb/ ./" >> /etc/apt/sources.list
+ # apt-get update && apt-get install odoo
 
 这将自动安装所有默认项,安装Odoo本身作为一个守护进程,并自动启动它。
 
