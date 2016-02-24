@@ -91,7 +91,7 @@ pip介绍：
 
  解决方案
 
-    ** make sure the development packages of libxml2 and libxslt are installed **
+  ** make sure the development packages of libxml2 and libxslt are installed **
 
 Assuming you are running a debian-based distribution
 
