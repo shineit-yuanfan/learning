@@ -7,15 +7,15 @@ linux下安装odoo
 
 安装odoo库
 ----------------
-*从git的仓库克隆出odoo的库
+从git的仓库克隆出odoo的库
 
 	git clone https://github.com/odoo/odoo.git
 
 （注意：克隆时间可能会比较长，因为需要克隆整个odoo项目的历史）
 
-###安装依赖
+###安装相关文件
 
-安装odoo库需要同时配置一些相关操作作为依赖
+安装odoo库需要同时配置一些相关文集操作，作为支持odoo运行的一些辅助文件，或者是组成文件。
 
 下载Python 2.7
 ----------
@@ -42,13 +42,6 @@ PostgreSQL的安装
 
 	sudo apt-get install postgresql postgresql-client
 
-创建数据库用户 root，并指定其为超级用户：
-
-	sudo -u postgres createuser --superuser root
-
-登录数据库控制台，设置 root 用户的密码，退出控制台：
-
-	sudo -u postgres psql
 
 pip的安装
 -----------
@@ -76,30 +69,13 @@ pip介绍：
 	
 	pip install -r requirements.txt
 
-  在安装过程中，可能会出现报错。如：
+requirements.txt  中添加了odoo的所有依赖包及其精确版本号
 
- 问题1：
-
->安装psycopg2 出错log ：Error:pg_config executable not found的解决
- 
+  由于在不同的虚拟机下，可能会出现不同的问题。在安装过程中，可能会出现报错。如：
 
 
- 解决方案
 
-  ** make sure the development packages of libxml2 and libxslt are installed **
-
-Assuming you are running a debian-based distribution
-
-	sudo apt-get install libxml2-dev
-	sudo apt-get install libxslt1-dev 
-
-或者安装python开发包
-
-	sudo apt-get install python-dev
-
-as suggested by commenters
-
-  问题2： 
+  可能遇到的问题1： 
 	postgresql-server-X.Y没有安装
 
 >Error: You need to install postgresql-server-dev-X.Y for building a server-side extension or libpq-dev for building a client-side application.
@@ -122,15 +98,16 @@ as suggested by commenters
 >    % (command_desc, proc.returncode, cwd))
 >InstallationError: Command python setup.py egg_info failed with error code 1 in /tmp/pip_build_hsun/psycopg2
 
+由于提示没有安装postgresql-server-X.Y，所以通过sudo apt-get install命令，安装postgresql-server-dev-9.3 （9.3是版本号）
 
 解决方法：
 	
 	sudo apt-get install postgresql-server-dev-9.3
 
 
-  问题3：
+  可能遇到的问题2：
 
->安装lxml包 出错log
+安装lxml包 出错log
 >Downloading/unpacking lxml==3.4.1 (from -r requirements.txt (line 17))
 >  Downloading lxml-3.4.1.tar.gz (3.5MB): 3.5MB downloaded
 >  Running setup.py (path:/tmp/pip_build_root/lxml/setup.py) egg_info for package lxml
@@ -146,7 +123,7 @@ as suggested by commenters
     
 >    warning: no previously-included files found matching '*.py'
 
-
+  因为lxml包出错，所以通过sudo apt-get install安装。
 解决方法
     ** make sure the development packages of libxml2 and libxslt are installed **
 
@@ -162,7 +139,7 @@ Assuming you are running a debian-based distribution
 as suggested by commenters
 
 
-  问题4：
+  可能遇到的问题3：
 > Downloading requests-2.6.0-py2.py3-none-any.whl (469kB): 372kB downloaded
 >Exception:
 >Traceback (most recent call last):
