@@ -18,7 +18,7 @@ linux下安装odoo
 
 （注意：克隆时间可能会比较长，因为需要克隆整个odoo项目的历史）
 
-安装依赖
+###安装依赖
 
 安装odoo库需要同时配置一些相关操作作为依赖
 
@@ -85,11 +85,12 @@ pip介绍：
 
  问题1：
 
-	安装psycopg2 出错log ：Error:pg_config executable not found的解决
+>安装psycopg2 出错log ：Error:pg_config executable not found的解决
  
 
 
  解决方案
+
     ** make sure the development packages of libxml2 and libxslt are installed **
 
 Assuming you are running a debian-based distribution
@@ -217,6 +218,14 @@ NodeJS和NPM的安装
   一旦安装NPM，可以用它来装一些， less-plugin-clean-css:
 
 	sudo npm install -g less less-plugin-clean-css
+
+###警告：
+
+  如果你是在Ubuntu13.10或者Debian wheezy 你需要手动安装之前的NodeJs
+
+	wget -qO- https://deb.nodesource.com/setup | bash -
+
+	apt-get install -y nodejs
 
 运行Odoo
 =======
