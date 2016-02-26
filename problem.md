@@ -16,15 +16,19 @@ odoo是用python语言编写的应用系统，运行在python的环境下的系�
 
 （注意：克隆时间可能会比较长，因为需要克隆整个odoo项目的历史）
 
-###安装相关文件
+####安装相关文件
 
 安装odoo库时，需要同时进行一些对配置文件的相关操作，作为支持odoo运行的一些辅助文件，或者是组成文件。
 
 下载Python 2.7
 ----------
-###为什么我们要下载python
+####为什么我们要下载python
 
-    因为odoo是运行在python下的系统，所以当我们安装odoo时应该先检测仪下我们的系统中是否安装python。注意odoo只能运行在python版本2.7到3.0之间。3.0及以上odoo无法正常运行。以下是源码安装python2.7的方法。
+因为odoo是运行在python下的系统，所以当我们安装odoo时应该先检测仪下我们的系统中是否
+
+安装python。注意odoo只能运行在python版本2.7到3.0之间。3.0及以上odoo无法正常运行。
+
+以下是源码安装python2.7的方法。
 	
 	sudo wget https://www.python.org/ftp/python/2.7.9/Python-2.7.9.tgz
 
@@ -67,6 +71,7 @@ pip的安装
   卸载软件包       pip uninstall SomePackage
 ###为什么要使用pip
    odoo除了使用自己的数据库外，还要依赖一些外部的第三方库。而这些库则需要pip来下载。为了方便，我们将这些第三方库打包在了一个requirements.txt文件中。
+
 安装pip：
 
  	sudo apt-get install python-pip
@@ -85,14 +90,16 @@ requirements.txt中添加了odoo的所有依赖包及其精确版本号。
   可能遇到的问题1： 
 	postgresql-server-X.Y没有安装
 
-	>Error: You need to install postgresql-server-dev-X.Y for building a server-side extension or libpq-dev for building a client-side application.
+	Error: You need to install postgresql-server-dev-X.Y for building a
+
+ server-side extension or libpq-dev for building a client-side application.
 
 
 >Cleaning up...
 >  Removing temporary dir /tmp/pip_build_hsun...
 >Command python setup.py egg_info failed with error code 1 in /tmp/pip_build_hsun/psycopg2
 >Exception information:
->Traceback (most recent call last):
+>Traceback (most recent 允许多个ocall last):
 >  File "/usr/lib/python2.7/dist-packages/pip/basecommand.py", line 122, in main
 >    status = self.run(options, args)
 >  File "/usr/lib/python2.7/dist-packages/pip/commands/install.py", line 278, in run
@@ -105,7 +112,8 @@ requirements.txt中添加了odoo的所有依赖包及其精确版本号。
 >    % (command_desc, proc.returncode, cwd))
 >InstallationError: Command python setup.py egg_info failed with error code 1 in /tmp/pip_build_hsun/psycopg2
 
-    通过报错信息可以看出是没有安装postgresql-server-dev-X.Y出现的问题。所以我们可以安装postgresql-server-dev-9.3 （9.3是版本号）来解决问题。只要执行             sudo apt-get install postgresql-server-dev-9.3即可解决问题
+    通过报错信息可以看出是没有安装postgresql-server-dev-X.Y出现的问题。所以我们可
+以安装postgresql-server-dev-9.3 （9.3是版本号）来解决问题。只要执行             sudo apt-get install postgresql-server-dev-9.3即可解决问题
 
 
   可能遇到的问题2：
@@ -126,13 +134,13 @@ requirements.txt中添加了odoo的所有依赖包及其精确版本号。
     
 >    warning: no previously-included files found matching '*.py'
 
- 这个报错信息中，可以通过make sure the development packages of libxml2 and libxslt are installed可以看出，我们是需要安装libxml2和libxsit所以解决办法可以从安装他们解决。执行sudo apt-get install libxml2-dev 和 sudo apt-get install libxslt1-dev 即可解决问题。
+ 这个报错信息中，可以通过make sure the development packages of libxml2 and libxslt are installed看出，我们是需要安装libxml2和libxsit。所以解决办法可以通过安装他们解决。执行sudo apt-get install libxml2-dev 和 sudo apt-get install libxslt1-dev 即可解决问题。
   可能遇到的问题3：
 >In file included from Modules/LDAPObject.c:9:
 
 >Modules/errors.h:8: fatal error: lber.h: No such file or directory
   
-  python-ldap 是依赖于 OpenLDAP的，所以为了编译odoo应添加libsasl2-dev
+  python-ldap 是依赖于 OpenLDAP的，所以为了odoo正常安装应添加libsasl2-dev
 
 解决方法
 
@@ -168,30 +176,6 @@ NodeJS和NPM的安装
 	python odoo.py
 
 运行odoo，并在浏览器下打开localhost：8069既可以运行odoo了！
-
-
-
-
-	odoo使用python写的应用系统，python运行下启动。
-1系统有python
-2ubuntu下安装的14.04下安装的
-python运行环境搭建
-最新python3.x
-odoo不能运行性3.0以上只能在2.7以上
-检查python2.7
-（源码编译安装2.7 apt-get python2.7）
-odoo有数据库所以必须安装数据库
-
-现在运行odoo会失败
-第三方库函数用到pip，它可以安装python语言第三方库函数
-
-快苏安装过程中有可能会失败
-扩展包中一种直接用pytho
-安装n语言写
-另一种是用c语言写这时候必须要编译
-（编译语言速度快）需要的可能会出错log
-nog安装lessc
-
 
 
 
