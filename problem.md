@@ -112,8 +112,8 @@ requirements.txt中添加了odoo的所有依赖包及其精确版本号。
 >    % (command_desc, proc.returncode, cwd))
 >InstallationError: Command python setup.py egg_info failed with error code 1 in /tmp/pip_build_hsun/psycopg2
 
-    通过报错信息可以看出是没有安装postgresql-server-dev-X.Y出现的问题。所以我们可以
-安装postgresql-server-dev-9.3 （9.3是版本号）来解决问题。只要执行
+    通过报错信息可以看出是没有安装postgresql-server-dev-X.Y出现的问题。所以我们可以安装
+	postgresql-server-dev-9.3 （9.3是版本号）来解决问题。只要执行
 	sudo apt-get install postgresql-server-dev-9.3即可解决问题
 
 
