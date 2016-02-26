@@ -1,9 +1,12 @@
 linux下安装odoo
 ==========
+什么是odoo？
+odoo是用python语言编写的应用系统，运行在python的环境下的系统。因其开源性，强大的底层结构，可以根据自身要求，量身打造适合自己的ERP系统和电子商务系统。
+
 为什么我们要用源代码安装odoo
 ------------
 
-   源码安装实际上就是直接在源代码下运行odoo，而不是去安装他。他更新方便。模块开发人员可以更加容易的使用。相比其他方式可以更加灵活的启动或者停止。它可以提供更大的控制系统设置，可以同时允许多个odoo并行运行。
+   源码安装实际上就是直接在源代码下运行odoo，而不是去安装他。他的好处在于他更新方便。模块开发人员可以很容易的使用。相比于其他方式可以更加灵活的启动和停止。它提供了更大的控制系统设置，允许多个odoo并行运行。
 
 安装odoo库
 ----------------
@@ -15,10 +18,13 @@ linux下安装odoo
 
 ###安装相关文件
 
-安装odoo库需要同时配置一些相关文集操作，作为支持odoo运行的一些辅助文件，或者是组成文件。
+安装odoo库时，需要同时进行一些对配置文件的相关操作，作为支持odoo运行的一些辅助文件，或者是组成文件。
 
 下载Python 2.7
 ----------
+###为什么我们要下载python
+
+    因为odoo是运行在python下的系统，所以当我们安装odoo时应该先检测仪下我们的系统中是否安装python。注意odoo只能运行在python版本2.7到3.0之间。3.0及以上odoo无法正常运行。以下是源码安装python2.7的方法。
 	
 	sudo wget https://www.python.org/ftp/python/2.7.9/Python-2.7.9.tgz
 
@@ -45,7 +51,7 @@ PostgreSQL的安装
 
 pip的安装
 -----------
-pip介绍：
+###pip介绍：
 
   pip是时python软件安装包管理系统，可以通过pip安装一些命令控制工具以及其他的东西。可以用来安装和管理软件包。可以用来很方便的安装或者删除python软件包。
 
@@ -59,7 +65,8 @@ pip介绍：
   查看具体安装文件 pip show --files SomePackage
 
   卸载软件包       pip uninstall SomePackage
-
+###为什么要使用pip
+   odoo除了使用自己的数据库外，还要依赖一些外部的第三方库。而这些库则需要pip来下载。为了方便，我们将这些第三方库打包在了一个requirements.txt文件中。
 安装pip：
 
  	sudo apt-get install python-pip
@@ -69,16 +76,16 @@ pip介绍：
 	
 	pip install -r requirements.txt
 
-requirements.txt  中添加了odoo的所有依赖包及其精确版本号
+requirements.txt中添加了odoo的所有依赖包及其精确版本号。
 
-  由于在不同的虚拟机下，可能会出现不同的问题。在安装过程中，可能会出现报错。如：
+  由于在不同的虚拟机下，可能会出现不同的问题。requirements.txt文件下的库也不一定全部由python语言编写所以在安装过程中，可能会出现报错。如：
 
 
 
   可能遇到的问题1： 
 	postgresql-server-X.Y没有安装
 
->Error: You need to install postgresql-server-dev-X.Y for building a server-side extension or libpq-dev for building a client-side application.
+	>Error: You need to install postgresql-server-dev-X.Y for building a server-side extension or libpq-dev for building a client-side application.
 
 
 >Cleaning up...
@@ -98,11 +105,7 @@ requirements.txt  中添加了odoo的所有依赖包及其精确版本号
 >    % (command_desc, proc.returncode, cwd))
 >InstallationError: Command python setup.py egg_info failed with error code 1 in /tmp/pip_build_hsun/psycopg2
 
-由于提示没有安装postgresql-server-X.Y，所以通过sudo apt-get install命令，安装postgresql-server-dev-9.3 （9.3是版本号）
-
-解决方法：
-	
-	sudo apt-get install postgresql-server-dev-9.3
+    通过报错信息可以看出是没有安装postgresql-server-dev-X.Y出现的问题。所以我们可以安装postgresql-server-dev-9.3 （9.3是版本号）来解决问题。只要执行             sudo apt-get install postgresql-server-dev-9.3即可解决问题
 
 
   可能遇到的问题2：
@@ -117,60 +120,19 @@ requirements.txt  中添加了odoo的所有依赖包及其精确版本号
 >    Building without Cython.
 >    ERROR: /bin/sh: 1: xslt-config: not found
     
->    ** make sure the development packages of libxml2 and libxslt are installed **
+	    make sure the development packages of libxml2 and libxslt are installed 
     
 >    Using build configuration of libxslt
     
 >    warning: no previously-included files found matching '*.py'
 
-  因为lxml包出错，所以通过sudo apt-get install安装。
-解决方法
-    ** make sure the development packages of libxml2 and libxslt are installed **
-
-Assuming you are running a debian-based distribution
-
-	sudo apt-get install libxml2-dev
-	sudo apt-get install libxslt1-dev 
-
-或者安装python开发包
-
-	sudo apt-get install python-dev
-
-as suggested by commenters
-
-
+ 这个报错信息中，可以通过make sure the development packages of libxml2 and libxslt are installed可以看出，我们是需要安装libxml2和libxsit所以解决办法可以从安装他们解决。执行sudo apt-get install libxml2-dev 和 sudo apt-get install libxslt1-dev 即可解决问题。
   可能遇到的问题3：
-> Downloading requests-2.6.0-py2.py3-none-any.whl (469kB): 372kB downloaded
->Exception:
->Traceback (most recent call last):
->  File "/usr/lib/python2.7/dist-packages/pip/basecommand.py", line 122, in main
->    status = self.run(options, args)
->  File "/usr/lib/python2.7/dist-packages/pip/commands/install.py", line 278, in run
->    requirement_set.prepare_files(finder, force_root_egg_info=self.bundle, bundle=self.bundle)
->  File "/usr/lib/python2.7/dist-packages/pip/req.py", line 1198, in prepare_files
->    do_download,
->  File "/usr/lib/python2.7/dist-packages/pip/req.py", line 1376, in unpack_url
->    self.session,
->  File "/usr/lib/python2.7/dist-packages/pip/download.py", line 572, in unpack_http_url
->    download_hash = _download_url(resp, link, temp_location)
->  File "/usr/lib/python2.7/dist-packages/pip/download.py", line 433, in _download_url
->    for chunk in resp_read(4096):
->  File "/usr/lib/python2.7/dist-packages/pip/download.py", line 421, in resp_read
->    chunk_size, decode_content=False):
->  File "/usr/share/python-wheels/urllib3-1.7.1-py2.py3-none-any.whl/urllib3/response.py", line 225, in stream
->    data = self.read(amt=amt, decode_content=decode_content)
->  File "/usr/share/python-wheels/urllib3-1.7.1-py2.py3-none-any.whl/urllib3/response.py", line 174, in read
->    data = self._fp.read(amt)
->  File "/usr/lib/python2.7/httplib.py", line 573, in read
->    s = self.fp.read(amt)
->  File "/usr/lib/python2.7/socket.py", line 380, in read
->    data = self._sock.recv(left)
->  File "/usr/lib/python2.7/ssl.py", line 341, in recv
->    return self.read(buflen)
->  File "/usr/lib/python2.7/ssl.py", line 260, in read
->    return self._sslobj.read(len)
->SSLError: The read operation timed out
+>In file included from Modules/LDAPObject.c:9:
 
+>Modules/errors.h:8: fatal error: lber.h: No such file or directory
+  
+  python-ldap 是依赖于 OpenLDAP的，所以为了编译odoo应添加libsasl2-dev
 
 解决方法
 
@@ -210,7 +172,26 @@ NodeJS和NPM的安装
 
 
 
-	
+	odoo使用python写的应用系统，python运行下启动。
+1系统有python
+2ubuntu下安装的14.04下安装的
+python运行环境搭建
+最新python3.x
+odoo不能运行性3.0以上只能在2.7以上
+检查python2.7
+（源码编译安装2.7 apt-get python2.7）
+odoo有数据库所以必须安装数据库
+
+现在运行odoo会失败
+第三方库函数用到pip，它可以安装python语言第三方库函数
+
+快苏安装过程中有可能会失败
+扩展包中一种直接用pytho
+安装n语言写
+另一种是用c语言写这时候必须要编译
+（编译语言速度快）需要的可能会出错log
+nog安装lessc
+
 
 
 
