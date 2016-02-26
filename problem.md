@@ -92,7 +92,7 @@ requirements.txt中添加了odoo的所有依赖包及其精确版本号。
 
 	Error: You need to install postgresql-server-dev-X.Y for building a
 
- 	server-side extension or libpq-dev for building a client-side 			application.
+ 	server-side extension or libpq-dev for building a client-side application.
 
 
 >Cleaning up...
