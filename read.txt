@@ -1,1 +1,15 @@
-“hello,world”
+git用来切换远程分支
+
+git fetch 用来获取新数据
+
+git branch -va 查看本地分支以及远程分支。
+
+git branch 查看本地分支
+
+git branch +远程分支   切换到远程分支
+
+git checkout master 切换分支
+
+git checkout -b master 创建分支并切换
+
+git checkout -b 8.0 origin/8.0  将远程分支映射到本地命名为8.0的分支上。
