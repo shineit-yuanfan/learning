@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- window action -->
+     
+        <!--record model="ir.actions.act_window" id="course_list_action">
+            <field name="name">Courses</field>
+            <field name="res_model">openacademy.course</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first course
+                </p>
+            </field>
+        </record-->
+
+        <!-- top level menu: no parent -->
+        <!--menuitem id="main_openacademy_menu" name="Open Academy"/-->
+        <!-- A first level in the left side menu is needed
+             before using action= attribute -->
+        <!--menuitem id="openacademy_menu" name="Open Academy"
+                  parent="main_openacademy_menu"/-->
+        <!-- the following menuitem should appear *after*
+             its parent openacademy_menu and *after* its
+             action course_list_action -->
+        <!--menuitem id="courses_menu" name="Courses" parent="openacademy_menu"
+                  action="course_list_action"/-->
+        <!-- Full id location:
+             action="openacademy.course_list_action"
+             It is not required when it is the same module -->
+        <record model="ir.ui.view" id="session_form_view">
+            <field name="name">session.form</field>
+            <field name="model">openacademy.session</field>
+            <field name="arch" type="xml">
+                <form string="Session Form">
+                    <sheet>
+                      <h1>
+                      <label for="duration" string="Duration" class="oe_edit_only"/></h1>
+                              <field name="duration"/>
+                      <group>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="name"/>
+                            <!-- <field name="date_start"/> -->
+                            <field name="seats"/>
+                            <field name="course_id"/>
+                            <field name="taken_seats" widget="progressbar"/>
+                            <field name="active"/>
+                            <!--laber for="attendee_ids"/-->
+                            <field name="attendee_ids"/>
+                      </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="session_tree_view">
+            <field name="name">session.form</field >
+            <field name="model">openacademy.session</field>
+            <field  name="arch" type="xml">
+                <tree string="session Form">
+                  <field name="name"></field>
+                  <field name="start_date"></field>
+                  <field name="duration"></field>
+                  <field name="taken_seats" widget="progressbar"/>
+                  <field name="seats"></field>
+                  <field name="num_attendee"/>
+                </tree>
+            </field>
+        </record>             
+            <!-- <field name="arch" type="xml">
+                <calendar string="Session Calendar" date_start="start_date"
+                          date_stop="end_date"
+                          color="instructor_id">
+                    <field name="name"/>
+                </calendar>
+            </field>   -->                            
+
+
+                  <!-- <field name="arch" type="xml">
+                    <calendar string="Session Calendar" date_start="start_date"
+                          date_stop="end_date"
+                          color="instructor_id">
+                        <field name="name"/>
+                    </calendar>
+                  </field> -->
+               <!--    field name="len(self.sttendee_ids)"></field -->
+              
+
+
+
+
+        <!-- calendar view -->
+        <record model="ir.ui.view" id="session_calendar_view">
+            <field name="name">session.calendar</field>
+            <field name="model">openacademy.session</field>
+            <field name="arch" type="xml">
+                <calendar string="Session Calendar" date_start="start_date"
+                          date_stop="end_date"
+                          color="instructor_id">
+                    <field name="name"/>
+                </calendar>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="session_gantt_view">
+            <field name="name">session.gantt</field>
+            <field name="model">openacademy.session</field>
+            <field name="arch" type="xml">
+                <gantt string="Session Gantt" color="course_id"
+                       date_start="start_date" date_delay="hours"
+                       default_group_by='instructor_id'
+                       progress="progress">
+                    <field name="name"/>
+                </gantt>
+            </field>
+        </record>
+
+
+
+<!--         <record model="ir.ui.view" id="session_state_view">
+            <field name="name">session.state</field>
+            <field name="model">openacademy.session</field>
+            <field name="arch" type="xml">
+              <header>
+                <button name="state" string="草稿" type="object" stateusbar_visible="draft,confirm"/>
+              </header>
+            </field>
+        </record>    -->   
+
+
+
+
+
+
+
+        <record model="ir.actions.act_window" id="session_list_action">
+            <field name="name">Sessions</field>
+            <field name="res_model">openacademy.session</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,calendar,gantt,form</field>
+        </record>
+
+        <menuitem id="openacademy_menu" name="Openacademy"/>
+	<menuitem id="academy_menu" name="openacademy"
+			parent="openacademy_menu"/>
+	<menuitem id="session_menu" name="session" 
+                  parent="academy_menu"
+                  action="session_list_action"/>
+	<!--menuitem id="main_openacademy_menu" name="Open Academy"/-->
+        <!-- A first level in the left side menu is needed
+             before using action= attribute -->
+        <!--menuitem id="openacademy_menu" name="Open Academy"
+                  parent="main_openacademy_menu"/-->
+        <!-- the following menuitem should appear *after*
+             its parent openacademy_menu and *after* its
+             action course_list_action -->
+        <!--menuitem id="courses_menu" name="Courses" parent="openacademy_menu"
+                  action="course_list_action"/-->
+        <record model="ir.ui.view" id="course_form_view">
+            <field name="name">course.form</field>
+            <field name="model">openacademy.course</field>
+            <field name="arch" type="xml">
+                <form string="Session Form">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                            <!--field name="reponsible_id"-->
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="course_list_action">
+            <field name="name">Course</field>
+            <field name="res_model">openacademy.course</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="openacademy_menu" name="Openacademy"/>
+  <menuitem id="academy_menu" name="openacademy"
+      parent="openacademy_menu"/>
+  <menuitem id="course_menu" name="course" 
+                  parent="academy_menu"
+                  action="course_list_action"/>        
+
+
+    </data>
+</openerp>
+
+
