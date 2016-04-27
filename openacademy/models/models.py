@@ -52,6 +52,46 @@ class Session(models.Model):
 	num_attendee=fields.Integer(string="Num of attendee", compute="_get_attendee_ids")
 	
 
+	state=fields.Selection([("draft","Draft草稿"),
+							("confirm","Confirm确定")],
+							default="draft" , string='状态' ,readonly=True)
+
+	# btn_state=fields.type(related=state,store=True)
+
+	def btn_state(self, cr, uid, ids, context=None):
+		# for r in self:
+			# if context is None:
+			# 	context={}
+			# 	self.write(cr,uid,ids,{"state":"confirm"},context=context)
+			if context is None:
+				context={}
+				self.write(cr,uid,ids,{'state':'draft'},context=context)
+				return confirm(self, cr, uid, ids, context=None)
+				if context is None:
+					context={}
+					self.write(cr,uid,ids,{'state':'confirm'},context=context)
+					return True
+					# def accept(self, cr, uid, ids, context=None):
+					# 	if context is None:
+					# 		context={}
+					# 		self.write(cr,uid,ids,{'state':'accepted'},context=context)
+					# 		return True
+
+
+	@api.one
+	def do_start(self):
+		print "------------self.state = 'start'"
+		self.state = 'draft'
+		return True
+
+    # 将state 置于确认状态
+	@api.one
+	def do_confirm(self):
+		print "------------self.state = 'confirm'"
+		self.state = 'confirm'
+		return True
+
+
 
 
 	@api.depends("attendee_ids")
@@ -61,7 +101,10 @@ class Session(models.Model):
 
 
 			
-
+	# @api.multi
+	# def change_draft(self):
+	# 	self.
+	# 	 {"confirm"}
 
 
 

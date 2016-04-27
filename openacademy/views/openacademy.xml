@@ -34,6 +34,14 @@
             <field name="arch" type="xml">
                 <form string="Session Form">
                     <sheet>
+                      <header>
+                        <button name="btn_state" string="确认" type="object" class="oe_highlight" states="draft" stateusbar_visible="draft,confirm" />
+                        <!-- <button name="btn_confirm "> -->
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm"/>
+                     <!--    <button name="change_draft" /> -->
+           <!-- states="draft,confirm" -->
+                     </header>
+                 
                       <h1>
                       <label for="duration" string="Duration" class="oe_edit_only"/></h1>
                               <field name="duration"/>
@@ -119,16 +127,18 @@
         </record>
 
 
-
-<!--         <record model="ir.ui.view" id="session_state_view">
+<!-- 
+        <record model="ir.ui.view" id="session_state_view">
             <field name="name">session.state</field>
             <field name="model">openacademy.session</field>
             <field name="arch" type="xml">
               <header>
-                <button name="state" string="草稿" type="object" stateusbar_visible="draft,confirm"/>
+                <button name="btn_state" string="确认" type="object" class="oe_highlight" stateusbar_visible="draft,confirm"/>
+                  <button name="change_draft" />
+           
               </header>
             </field>
-        </record>    -->   
+        </record>       -->
 
 
 
